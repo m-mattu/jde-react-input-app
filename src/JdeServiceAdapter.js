@@ -22,8 +22,8 @@ const JdeServiceAdapter = {
                 //All code below is for local Testing Environment
                 let requestBody = input;
                 if(input !== ""){
-                    requestBody.username = "";
-                    requestBody.password = ""
+                    requestBody.username = "MMATTU";
+                    requestBody.password = "D3v1nt#846"
                 }
                 
                 let requestUrl =  `${server}/orchestrator/${orchestration}`;

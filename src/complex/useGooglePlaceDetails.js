@@ -2,19 +2,32 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const useGooglePlaceDetails = props => {
+    const API_KEY = "AIzaSyCnkSWV1FaaHP1xX6xfKbRhiqaQ9g1CJ8s";
     const [ address, setAddress ] = useState({
         streetNumber: "",
         street: "",
         city: "",
         province: "",
-        postalCode: "",
+        province: "",
         country: "",
         addressLine1: ""
     });
-    const API_KEY = "AIzaSyCnkSWV1FaaHP1xX6xfKbRhiqaQ9g1CJ8s";
+    
+    // const resetAddressSearch = () => {
+    //     setAddress({
+    //         streetNumber: "",
+    //         street: "",
+    //         city: "",
+    //         province: "",
+    //         province: "",
+    //         country: "",
+    //         addressLine1: ""
+    //     })
+    // }
 
     //Function to parse the place details response for the address_component field object
     const parseAddressComponent = (response) => {
+        debugger;
         let addressComponents = response.result.address_components;
         let address = {};
         addressComponents.forEach((item)=>{
@@ -35,8 +48,8 @@ const useGooglePlaceDetails = props => {
         return address;
     }
 
-    const searchPlaceDetails = (newPlaceId) => {
-            let requestUrl = `http://172.26.26.209:8080/place/details/json?placeid=${newPlaceId}&fields=address_component&key=${API_KEY}`;
+    const searchPlaceDetails = ({placeId}) => {
+            let requestUrl = `http://172.26.26.209:8080/place/details/json?placeid=${placeId}&fields=address_component&key=${API_KEY}`;
             
             fetch(requestUrl,{
                 
@@ -54,7 +67,7 @@ const useGooglePlaceDetails = props => {
 
 
 
-    return {address, searchPlaceDetails};
+    return {address, searchPlaceDetails, };
 }
 
 export default useGooglePlaceDetails
