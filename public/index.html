@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <!-- The following is for the places search component -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnkSWV1FaaHP1xX6xfKbRhiqaQ9g1CJ8s&libraries=places"></script>
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script type="text/javascript" src="https://dv910.ledcor.com/jde/e1pages/e1pagehelper.js"></script>
+    <!-- <script type="text/javascript" src="../e1pagehelper.js"></script> -->
+    <script type="text/javascript">
+      function getJdeEnvironment(){
+        return window.getEnvironment();
+      }
+
+      function runJdeE1App(appId, formId, version, menuSysCode, taskName, formDSTmpl, formDSData){
+        window.runE1App(appId, formId, version, menuSysCode, taskName, formDSTmpl, formDSData);
+      }
+
+      function runOrchestration(orchestration,input,callback){
+          window.callAISOrchestration(orchestration,input,callback)
+      }
+
+      function getUserInfo(){
+        let userName = window.getUserName();
+        let userId = window.getUserId();
+        return {
+          userName: userName,
+          userId: userId
+        }
+      }
+    </script>
+
+    <title>Address Book Mailing Update</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+  </body>
+</html>
