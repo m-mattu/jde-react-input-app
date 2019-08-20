@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import JdeServiceAdapter from '../JdeServiceAdapter';
-import { DateConvertor } from '../DateConvertor';
+import React, {useState, useContext} from 'react';
+import JdeServiceAdapter from '../../common/JdeServiceAdapter';
+import { DateConvertor } from '../../common/DateConvertor';
 import useGooglePlaceDetails from './useGooglePlaceDetails';
 import GoogleAddressSearch from './GoogleAddressSearch';
+import LoadingContext from '../contexts/loading.context';
 
 ///This is the basic version of updating the Address Book Mailing Address
 const MailingAddressFormV2 = () => {
@@ -11,6 +12,7 @@ const MailingAddressFormV2 = () => {
         effectiveDate: ""
     });
     const { address, searchPlaceDetails, resetAddressSearch } = useGooglePlaceDetails();
+    const { showLoading, hideLoading } = useContext(LoadingContext);
 
     ///Function to modify state when an input value is modified
     const handleFieldChange = (field) => (event) => {
@@ -26,6 +28,7 @@ const MailingAddressFormV2 = () => {
             addressNumber: "",
             effectiveDate: ""
         });
+        resetAddressSearch();
        
     }
 
@@ -33,17 +36,20 @@ const MailingAddressFormV2 = () => {
     ///Note: Only capturing the event since it is a button calling the function and we do not want to refresh the page
     const updateMailingAddress = (event) => {
         event.preventDefault();
-        let requestBody = {
+        const requestBody = {
             addressNumber: state.addressNumber,
             effectiveDate: DateConvertor(state.effectiveDate),
             addressLine1: address.addressLine1,
             province: address.province,
             postalCode: address.postalCode,
-            country: address.country
+            country: address.country,
+            city: address.city
         };
+        showLoading();
         JdeServiceAdapter.orchestrationService('InFocus_Update_AddressBook_MailingAddress',requestBody)
         .then((response)=>{
             //catch generic error
+            hideLoading();
             if(response.exception || response.message){
                 alert(response.message);
                 return;
@@ -65,7 +71,7 @@ const MailingAddressFormV2 = () => {
             <form className="form">
                 Address Number: <input type="number" value={state.addressNumber}    onChange={handleFieldChange('addressNumber')}/>
                 Effective Date: <input type="date" value={state.effectiveDate}      onChange={handleFieldChange('effectiveDate')}/>
-                <br/> <GoogleAddressSearch  searchPlaceDetails={searchPlaceDetails}/>
+                <br/> <GoogleAddressSearch  searchPlaceDetails={searchPlaceDetails} handleClear={resetAddressSearch}/>
                 Address Line 1: <input type="text" value={address.addressLine1}       disabled/>
                 City:           <input type="text" value={address.city}               disabled/>
                 Province:       <input type="text" value={address.province}           disabled/>

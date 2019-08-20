@@ -1,8 +1,6 @@
 import { resolve } from 'q';
-
-//For Local Testing
-const server = 'https://10.217.91.66:7594/jderest';
-
+//Enter your local ais server
+const server = ""
 const JdeServiceAdapter = {
     orchestrationService: (orchestration,input) =>{
         return new Promise((resolve, reject)=>{
@@ -22,8 +20,8 @@ const JdeServiceAdapter = {
                 //All code below is for local Testing Environment
                 let requestBody = input;
                 if(input !== ""){
-                    requestBody.username = "MMATTU";
-                    requestBody.password = "D3v1nt#846"
+                    requestBody.username = "";
+                    requestBody.password = ""
                 }
                 
                 let requestUrl =  `${server}/orchestrator/${orchestration}`;
@@ -52,8 +50,6 @@ const JdeServiceAdapter = {
                 break;
             default:
                 //Used for testing Environment
-                // let url = `https://YOUR JDE SERVER/jde/ShortcutLauncher?OID=${appId}_${formId}_${version}&FormDSTmpl=${formDSTmpl}&FormDSData=${formDSData}`
-                // window.open(url,"_blank");
             }
     },
     getUserInfo: () => {

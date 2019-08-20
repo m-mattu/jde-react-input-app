@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import JdeServiceAdapter from '../JdeServiceAdapter';
-import { DateConvertor } from '../DateConvertor';
+import JdeServiceAdapter from '../common/JdeServiceAdapter';
+import { DateConvertor } from '../common/DateConvertor';
 
 ///This is the basic version of updating the Address Book Mailing Address
 const MailingAddressForm = () => {
@@ -9,6 +9,7 @@ const MailingAddressForm = () => {
         effectiveDate: "",
         addressLine1: "",
         addressLine2: "",
+        city: "",
         province: "",
         postalCode: "",
         country: ""
@@ -20,6 +21,7 @@ const MailingAddressForm = () => {
             effectiveDate: "",
             addressLine1: "",
             addressLine2: "",
+            city: "",
             province: "",
             postalCode: "",
             country: ""
@@ -36,8 +38,16 @@ const MailingAddressForm = () => {
     ///Note: Only capturing the event since it is a button calling the function and we do not want to refresh the page
     const updateMailingAddress = (event) => {
         event.preventDefault();
-        let requestBody = state;
-        requestBody.effectiveDate = DateConvertor(state.effectiveDate);
+        const requestBody = {
+            addressNumber: state.addressNumber,
+            effectiveDate: DateConvertor(state.effectiveDate),
+            addressLine1: state.addressLine1,
+            addressLine2: state.addressLine2,
+            province: state.province,
+            postalCode: state.postalCode,
+            country: state.country,
+            city: state.city
+        };
         JdeServiceAdapter.orchestrationService('InFocus_Update_AddressBook_MailingAddress',requestBody)
         .then((response)=>{
             //catch generic error
@@ -60,14 +70,14 @@ const MailingAddressForm = () => {
         <React.Fragment>
             <h2 className="header">Address Book Mailing Address Update</h2>
             <form className="form">
-                Address Number: <input type="number" value={state.addressNumber}    onChange={handleFieldChange('addressNumber')}/><br/>
-                Effective Date: <input type="date" value={state.effectiveDate}      onChange={handleFieldChange('effectiveDate')}/><br/>
-                Address Line 1: <input type="text" value={state.addressLine1}       onChange={handleFieldChange('addressLine1')}/><br/>
-                Address Line 2: <input type="text" value={state.addressLine2}       onChange={handleFieldChange('addressLine2')} /><br/>
-                City:           <input type="text" value={state.city}               onChange={handleFieldChange('city')}/><br/>
-                Province:       <input type="text" value={state.province}           onChange={handleFieldChange('province')}/><br/>
+                Address Number: <input type="number" value={state.addressNumber}    onChange={handleFieldChange('addressNumber')}/>
+                Effective Date: <input type="date" value={state.effectiveDate}      onChange={handleFieldChange('effectiveDate')}/>
+                Address Line 1: <input type="text" value={state.addressLine1}       onChange={handleFieldChange('addressLine1')}/>
+                Address Line 2: <input type="text" value={state.addressLine2}       onChange={handleFieldChange('addressLine2')} />
+                City:           <input type="text" value={state.city}               onChange={handleFieldChange('city')}/>
+                Province:       <input type="text" value={state.province}           onChange={handleFieldChange('province')}/>
                 Postal Code:    <input type="text" value={state.postalCode}         onChange={handleFieldChange('postalCode')}/>
-                Country:        <input type="text" value={state.country}            onChange={handleFieldChange('country')} /> <br/>
+                Country:        <input type="text" value={state.country}            onChange={handleFieldChange('country')} /> 
                <input type="submit" value="Submit" onClick={updateMailingAddress}/>
             </form>
         </React.Fragment>

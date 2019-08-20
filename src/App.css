@@ -39,7 +39,7 @@
   margin-top:10px;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 60%;
 }
 
 .header{
@@ -108,3 +108,28 @@
   background-color: #fafafa;
 }
 
+/* Loader */
+.loading-icon{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+  width: 54;
+  height: 54;
+  margin-top: -27px; /* Half the height */
+  margin-left: -27px; /* Half the width */
+  z-index: 10000; /* keep on top of other elements on the page */
+
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index:9999;
+  background-color: rgba(0,0,0,0.5);
+  overflow: auto;
+}

@@ -1,15 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import MailingAddressForm from './simple/MailingAddressInput';
-import MailingAddressFormV2 from './complex/MailingAddressInputV2';
+import ComplexDemo from './interactive-google-places/Demo';
+import SimpleDemo from './simple/Demo';
+
 
 function App() {
   return (
-    <div className="App">
-        <MailingAddressFormV2/>
-        {/* <MailingAddressForm/> */}
-    </div>
+    <ComplexDemo/>
+    // <SimpleDemo/>
   );
 }
 

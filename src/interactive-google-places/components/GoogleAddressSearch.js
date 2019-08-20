@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import { classnames } from './helpers';
+import { classnames } from '../helpers';
 
-///This is the basic version of updating the Address Book Mailing Address
+
 const GoogleAddressSearch = (props) => {
-    const { searchPlaceDetails} = props;
+    const { searchPlaceDetails, handleClear} = props;
     const [ state, setState ] = useState({
         address: "",
         errorMessage: '',
@@ -28,7 +28,8 @@ const GoogleAddressSearch = (props) => {
     const handleClose = () => {
         setState({
             address: '',
-        })
+        });
+        handleClear();
     };
 
     const handleError = (status, clearSuggestions) => {
@@ -62,14 +63,6 @@ const GoogleAddressSearch = (props) => {
                                     >x
                                     </button>
                                   )}
-                            {/* <div className="autocomplete-dropdown-container">
-                                {loading && <div>Loading...</div>}
-                                {suggestions.map(suggestion => (
-                                <div {...getSuggestionItemProps(suggestion)}>
-                                    <span>{suggestion.description}</span>
-                                </div>
-                                ))}
-                            </div> */}
                             </div>
                              {suggestions.length > 0 && (
                             <div className="Demo__autocomplete-container">
@@ -79,7 +72,6 @@ const GoogleAddressSearch = (props) => {
                                 });
 
                                 return (
-                                    /* eslint-disable react/jsx-key */
                                     <div
                                         {...getSuggestionItemProps(suggestion, { className })}
                                     >
@@ -91,7 +83,6 @@ const GoogleAddressSearch = (props) => {
                                     </small>
                                     </div>
                                 );
-                                /* eslint-enable react/jsx-key */
                                 })}
                             </div>
                     )}
