@@ -122,7 +122,7 @@ const JdeServiceAdapter = {
 
 ###  Mailing Address Update Simple App
 Refer to code here:
-
+https://github.com/m-mattu/jde-react-input-app/blob/upload-master/src/simple/MailingAddressInput.js
 
 ### Upload to JDE
 
@@ -148,6 +148,7 @@ Note: Our page loaded succesfully
 
 ###  Mailing Address Update Interactive App
 Refer to code here:
+https://github.com/m-mattu/jde-react-input-app/tree/upload-master/src/interactive-google-places/components
 
 There are a few things that have been added into this app:
 
