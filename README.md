@@ -9,7 +9,7 @@
 - [Upload to JDE](#upload-to-jde)
 - [Mailing Address Update Interactive App](#mailing-address-update-interactive-app)
 - [External Forms](#external-forms)
-- [Preference Service](#preferenceservice)
+- [Preference Service](#preference-service)
 - [Cloning Repository](#cloning-repository)
 
 
