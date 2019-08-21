@@ -8,9 +8,11 @@
 - [Setup for Local Testing](#setup-for-local-testing)
 - [Upload to JDE](#upload-to-jde)
 - [Mailing Address Update Interactive App](#mailing-address-update-interactive-app)
+- [External Forms](#external-forms)
+- [Preference Service](#preferenceservice)
 - [Cloning Repository](#cloning-repository)
 
-src/simple/MailingAddressInput.js
+
 ### Setup
 
 For instructions refer to the Setup section in the following repo:
@@ -122,7 +124,7 @@ const JdeServiceAdapter = {
 
 ###  Mailing Address Update Simple App
 Refer to code here:
-https://github.com/m-mattu/jde-react-input-app/blob/upload-master/src/simple/MailingAddressInput.js
+
 
 ### Upload to JDE
 
@@ -148,7 +150,7 @@ Note: Our page loaded succesfully
 
 ###  Mailing Address Update Interactive App
 Refer to code here:
-https://github.com/m-mattu/jde-react-input-app/tree/upload-master/src/interactive-google-places/components
+
 There are a few things that have been added into this app:
 
 - Global Loading Indicator (Can be used by any child component) 
@@ -161,6 +163,37 @@ There are a few things that have been added into this app:
 Google place details is used since react-places-autocomplete does not return the structured address object (address line1, city, postal code, etc). It will return the address in string format along with the Place ID.
 You can choose to parse the string but there are a lot of cases to think about when it comes to locality. The method I went with is to use Google Place Details API to convert the Place ID into a structured address component.
 For more details on how I did this look at the useGooglePlaceDetails file and the GoogleAddressSearch component. You will see when an address is selected in GoogleAddressSearch the useGooglePlaceDetails search function is executed.
+
+### External Forms
+Oracle has documented instructions in the following article:
+	[https://support.oracle.com/epmos/faces/DocumentDisplay?id=2257764.1](https://support.oracle.com/epmos/faces/DocumentDisplay?id=2257764.1)
+
+### Preference Service
+Preference Service is great to use when you want to store meta data in an app that is user specific.
+See Oracle documentation here:
+    [https://docs.oracle.com/cd/E53430_01/EOTRS/op-v2-preference-post.html](https://docs.oracle.com/cd/E53430_01/EOTRS/op-v2-preference-post.html)
+
+#### Example Get
+Note when calling the following using the e1pagehelper.js file you will not need to add token as it is a property that is auto populated.
+Also where objectName below would the name of your app. The name you set here is just an identifier for your application. The application name does not have to exist in JDE. Ex. I can use a name of INFOCUS19, and as long as I use that object name in the GET and PUT it will fetch/update the correct preference record
+```js
+{
+    "token": "{{aistoken}}",
+    "action": "GET",
+    "objectName": "P010102"
+}
+```
+
+#### Example Update
+Note below that the preferenceData object is stored as a blob in the data base so you will not be able to access it with an orchestration (Atleast with tools 9.2.1.7). That said it is stored as a JSON Object so you will need to use escape characters '\' whenever you have a double quote.
+```js
+{
+    "token": "{{aistoken}}",
+    "action": "PUT",
+    "objectName": "P010102",
+    "preferenceData": "{\"branch\":\"WH100\"}"
+}
+```
 
 ### Cloning Repository
 
