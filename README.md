@@ -200,4 +200,4 @@ Note below that the preferenceData object is stored as a blob in the data base s
 You can go ahead and clone this repo and build an app for your instance. Just remember the following must be performed for it to function:
 1. Update the link in the index.html file so your JDE instance is referenced (for e1pagehelper)
 2. Create an Orchestration in your instance and define it accordingly in the app
-3. Optional You can import the Orchestration file (OrchestrationExport.zip) into your instance, but our instance has modified the app significantly for Health and Safety
+3. Optional You can import the Orchestration file (OrchestrationExport.zip) into your instance
