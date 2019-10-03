@@ -1,7 +1,9 @@
-The following is the material that was presented at InFocus19, by Rob Brough and Michael Mattu.
+The following is the material that was presented at InFocus19 & Orchestrator Week for the session Extending JDE with Single Page Applications, by Rob Brough and Michael Mattu.
 You may contact Michael @ Michael.Mattu@ledcor.com.
 
-You may download the PowerPoint from the InFocus19 presentation [here](https://github.com/m-mattu/jde-react-input-app/raw/master/INFOCUS-19-%20Final%20Presentation.pptx).
+You may download the PowerPoint Presentations for the following:
+- InFocus19 [here](https://github.com/m-mattu/jde-react-input-app/raw/master/INFOCUS-19-%20Final%20Presentation.pptx).
+- Orchestrator Week [here](https://github.com/m-mattu/jde-react-input-app/raw/master/Orchestrator%20Week%20Presentation.pptx).
 
 Also see the material from the presentation at Collaborate19 below:
 https://github.com/m-mattu/jde-react-app
